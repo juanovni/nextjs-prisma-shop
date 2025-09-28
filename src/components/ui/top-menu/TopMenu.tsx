@@ -4,26 +4,26 @@ import Link from 'next/link';
 import { IoSearchOutline, IoCartOutline } from 'react-icons/io5';
 
 import { titleFont } from '@/config/fonts';
-/* import { useUIStore } from '@/store'; */
+import { useUIStore } from '@/store';
 
 
 export const TopMenu = () => {
 
-/*   const openSideMenu = useUIStore( state => state.openSideMenu );
- */
+  const openSideMenu = useUIStore(state => state.openSideMenu);
+
   return (
     <nav className="flex px-5 justify-between items-center w-full">
 
-      {/* Logo */ }
+      {/* Logo */}
       <div>
         <Link
           href="/">
-          <span className={ `${ titleFont.className } antialiased font-bold` } >Teslo</span>
+          <span className={`${titleFont.className} antialiased font-bold`} >Teslo</span>
           <span> | Shop</span>
         </Link>
       </div>
 
-      {/* Center Menu */ }
+      {/* Center Menu */}
       <div className="hidden sm:block">
 
         <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href="/category/men">Hombres</Link>
@@ -33,7 +33,7 @@ export const TopMenu = () => {
       </div>
 
 
-      {/* Search, Cart, Menu */ }
+      {/* Search, Cart, Menu */}
       <div className="flex items-center">
 
         <Link href="/search" className="mx-2">
@@ -50,8 +50,8 @@ export const TopMenu = () => {
         </Link>
 
         <button
-          /* onClick={ openSideMenu } */
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100">
+          onClick={openSideMenu}
+          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 cursor-pointer">
           Menú
         </button>
 
