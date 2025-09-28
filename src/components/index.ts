@@ -9,3 +9,6 @@ export { ProductGridItem } from './products/product-grid/ProductGridItem';
 export { Sidebar } from './ui/sidebar/Sidebar';
 export { Title } from './ui/title/Title';
 export { TopMenu } from './ui/top-menu/TopMenu';
+
+export * from './product/size-selector/SizeSelector';
+export * from './product/quantity-selector/QuantitySelector';
