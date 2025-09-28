@@ -1,5 +1,4 @@
-@tailwind utilities;
-@reference "tailwindcss";
+@import "tailwindcss";
 
 :root {
   --primary: #274494;
