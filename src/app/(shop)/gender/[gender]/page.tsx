@@ -6,14 +6,14 @@ import { Gender } from '@/generated/prisma';
 
 interface Props {
   params: Promise<{
-    gender: String;
+    gender: string;
   }>
   searchParams: Promise<{
     page?: string;
   }>
 }
 
-export default async function CategoryPage({ params, searchParams }: Props) {
+export default async function GenderByIdPage({ params, searchParams }: Props) {
   const { gender } = await params;  // ✅ unwrap params
   const searchPage = (await searchParams).page;
   const page = searchPage ? parseInt(searchPage) : 1;
