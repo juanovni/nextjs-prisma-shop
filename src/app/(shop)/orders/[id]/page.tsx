@@ -15,20 +15,16 @@ const productsInCart = [
 
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 
-export default function ({ params }: Props) {
-
-  const { id } = params;
-
+export default async function OrderByPage({ params }: Props) {
+  const { id } = await params;
   // Todo: verificar
   // redirect(/)
-
-
 
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
@@ -146,19 +142,9 @@ export default function ({ params }: Props) {
               </div>
 
             </div>
-
-
           </div>
-
-
-
         </div>
-
-
-
       </div>
-
-
     </div>
   );
 }
