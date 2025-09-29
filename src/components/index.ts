@@ -8,6 +8,7 @@ export * from './product/slideshow/ProductMobileSlideshow';
 export * from './product/slideshow/ProductSlideshow';
 
 export * from './ui/not-found/PageNotFound';
+export * from './ui/stock-label/StockLabel';
 export * from './ui/sidebar/Sidebar';
 export * from './ui/title/Title';
 export * from './ui/top-menu/TopMenu';
