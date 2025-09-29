@@ -1,13 +1,14 @@
-//lrc Crear Layout
 
-export default function AuthLayout({
-  children
-}: {
+export default function ShopLayout({ children }: {
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen bg-gray-500">
-      <h1>Hello Root Layout Root Name</h1>
+    <main className="flex justify-center">
+      <div className="w-full sm:w-[350px] px-10">
+
+        {children}
+
+      </div>
     </main>
   );
 }
