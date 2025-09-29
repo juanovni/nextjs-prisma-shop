@@ -3,7 +3,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface State {
+  //States
   cart: CartProduct[];
+
+  // Methods
+  getTotalItems: () => number;
   addProductTocart: (product: CartProduct) => void;
 
 }
@@ -12,7 +16,14 @@ export const useCartStore = create<State>()(
   // El persist recibe como segundo argumento para sincronizarlo con el localstorage
   persist(
     (set, get) => ({
+      //States
       cart: [],
+
+      // Methods
+      getTotalItems: () => {
+        const { cart } = get();
+        return cart.reduce((total, item) => total + item.quantity, 0);
+      },
 
       addProductTocart: (product: CartProduct) => {
         const { cart } = get();
