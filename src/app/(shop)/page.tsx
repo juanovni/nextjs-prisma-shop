@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getPaginatedProductsWithImages } from "@/actions/product/product-pagination";
+import { getPaginatedProductsWithImages } from "@/actions/product/get-product-pagination";
 import { ProductGrid, Title, Pagination } from "@/components";
 
 interface Props {

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { Pagination, ProductGrid, Title } from "@/components";
 import { Category } from "@/interfaces";
-import { getPaginatedProductsWithImages } from '@/actions/product/product-pagination';
+import { getPaginatedProductsWithImages } from '@/actions/product/get-product-pagination';
 import { Gender } from '@/generated/prisma';
 
 interface Props {
