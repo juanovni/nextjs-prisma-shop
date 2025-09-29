@@ -1,10 +1,8 @@
-import React from 'react';
-
 import { notFound } from 'next/navigation';
-
 import { initialData } from '@/seed/seed';
 import { titleFont } from '@/config/fonts';
 import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/components';
+import { getProductBySlug } from '@/actions';
 
 interface Props {
   params: Promise<{
@@ -12,9 +10,10 @@ interface Props {
   }>;
 }
 
-export default function ProductBySlugPage({ params }: Props) {
-  const { slug } = React.use(params);
-  const product = initialData.products.find(product => product.slug === slug);
+export default async function ProductBySlugPage({ params }: Props) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+  //const product = initialData.products.find(product => product.slug === slug);
 
   if (!product) {
     notFound();
