@@ -1,4 +1,3 @@
-'use client';
 
 import React from 'react';
 import { ProductGrid, Title } from "@/components";
@@ -14,8 +13,8 @@ interface Props {
   }>
 }
 
-export default function CategoryPage({ params }: Props) {
-  const { id } = React.use(params);  // ✅ unwrap params
+export default async function CategoryPage({ params }: Props) {
+  const { id } = await params;  // ✅ unwrap params
 
   if (!['men', 'women', 'kid', 'unisex'].includes(id)) {
     return <h1>Categoría no encontrada</h1>;
