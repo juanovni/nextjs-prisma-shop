@@ -10,7 +10,7 @@ import { IoExpandOutline } from "react-icons/io5";
 export const LoginForm = () => {
 
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
@@ -33,6 +33,7 @@ export const LoginForm = () => {
         type="password"
         name="password"
       />
+      <input type="hidden" name="redirectTo" value={callbackUrl} />
 
       <button
         className="btn-primary"
