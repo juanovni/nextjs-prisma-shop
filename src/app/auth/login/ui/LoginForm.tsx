@@ -3,8 +3,7 @@
 import Link from "next/link"
 
 import { authenticate } from '@/actions';
-import { useActionState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { IoExpandOutline } from "react-icons/io5";
 import { useFormState, useFormStatus } from "react-dom";
 import clsx from "clsx";

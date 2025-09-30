@@ -15,7 +15,7 @@ export const Sidebar = () => {
   const closeMenu = useUIStore(state => state.closeSideMenu);
 
   const { data: session } = useSession();
-  console.log({ session });
+  //console.log({ session });
   const isAuthenticated = !!session?.user;
   const isAdmin = session?.user.role === "admin";
 
