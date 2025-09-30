@@ -1,15 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { QuantitySelector, Title } from '@/components';
-import { initialData } from '@/seed/seed';
+
+import { Title } from '@/components';
 import { ProductsInCart } from './ui/ProductInCart';
-
-
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-];
+import { OrderSummary } from './ui/OrderSummary';
 
 export default function CartPage() {
   return (
@@ -18,7 +11,6 @@ export default function CartPage() {
       <div className="flex flex-col w-[1000px]">
 
         <Title title='Carrito' />
-
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
 
@@ -29,8 +21,6 @@ export default function CartPage() {
               Continúa comprando
             </Link>
 
-
-
             {/* Items */}
             <ProductsInCart />
           </div>
@@ -39,22 +29,7 @@ export default function CartPage() {
           <div className="bg-white rounded-xl shadow-xl p-7 h-fit">
             <h2 className="text-2xl mb-2">Resumen de orden</h2>
 
-            <div className="grid grid-cols-2">
-
-              <span>No. Productos</span>
-              <span className="text-right">3 artículos</span>
-
-              <span>Subtotal</span>
-              <span className="text-right">$ 100</span>
-
-              <span>Impuestos (15%)</span>
-              <span className="text-right">$ 100</span>
-
-              <span className="mt-5 text-2xl">Total:</span>
-              <span className="mt-5 text-2xl text-right">$ 100</span>
-
-
-            </div>
+            <OrderSummary />
 
             <div className="mt-5 mb-2 w-full">
               <Link
