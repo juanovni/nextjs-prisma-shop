@@ -15,6 +15,8 @@ export default async function ProfilePage() {
       <Title title="Perfil" />
 
       <pre>{JSON.stringify(session.user, null, 2)}</pre>
+
+      <h1>{session.user.role}</h1>
     </div>
   );
 }

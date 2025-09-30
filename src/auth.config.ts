@@ -9,6 +9,18 @@ export const authConfig: NextAuthConfig = {
     signIn: '/auth/login',
     newUser: '/auth/new-account'
   },
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.user = user; // agrega datos del user al token
+      return token;
+    },
+    async session({ session, token }) {
+      session.user = token.user as any;
+      return session;
+    },
+  },
+
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -29,7 +41,7 @@ export const authConfig: NextAuthConfig = {
         // Regresar la propiedad del usuario menos el passoword _
         const { password: _, ...rest } = user;
 
-        console.log(rest)
+        //console.log(rest)
 
         return rest;
       },
