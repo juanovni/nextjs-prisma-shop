@@ -35,8 +35,8 @@ export const LoginForm = () => {
       />
 
       <button
-
-        className="btn-primary">
+        className="btn-primary"
+        disabled={isPending}>
         Ingresar
       </button>
 
