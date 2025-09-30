@@ -3,21 +3,36 @@
 import Link from "next/link"
 
 import { authenticate } from '@/actions';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { IoExpandOutline } from "react-icons/io5";
+import { useFormState, useFormStatus } from "react-dom";
+import clsx from "clsx";
 
 export const LoginForm = () => {
 
-  const searchParams = useSearchParams();
+  /* const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
-  );
+  ); */
+
+  const [state, dispatch] = useFormState(authenticate, undefined);
+
+  console.log(state);
+
+  useEffect(() => {
+    if (state === 'Success') {
+      // redireccionar
+      // router.replace('/');
+      window.location.replace('/');
+    }
+
+  }, [state]);
 
   return (
-    <form action={formAction} className="flex flex-col">
+    <form action={dispatch} className="flex flex-col">
 
       <label htmlFor="email">Correo electrónico</label>
       <input
@@ -33,23 +48,23 @@ export const LoginForm = () => {
         type="password"
         name="password"
       />
-      <input type="hidden" name="redirectTo" value={callbackUrl} />
 
-      <button
+      <LoginButton />
+      {/*  <button
         className="btn-primary"
-        disabled={isPending}>
+      >
         Ingresar
-      </button>
+      </button> */}
 
       <div
         className="flex h-8 items-end space-x-1"
         aria-live="polite"
         aria-atomic="true"
       >
-        {errorMessage && (
+        {state === "Invalid credentials." && (
           <>
             <IoExpandOutline className="h-5 w-5 text-red-500" />
-            <p className="text-sm text-red-500">{errorMessage}</p>
+            <p className="text-sm text-red-500">Credenciales Inavlidas</p>
           </>
         )}
       </div>
@@ -68,4 +83,21 @@ export const LoginForm = () => {
 
     </form>
   )
+}
+
+function LoginButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      className={clsx({
+        "btn-primary": !pending,
+        "btn-disabled": pending
+      })}
+      disabled={pending}
+    >
+      Ingresar
+    </button>
+  );
 }
