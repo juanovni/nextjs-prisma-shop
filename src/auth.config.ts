@@ -11,6 +11,10 @@ export const authConfig: NextAuthConfig = {
   },
 
   callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      console.log({ auth })
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) token.user = user; // agrega datos del user al token
       return token;
