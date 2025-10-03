@@ -5,10 +5,13 @@ import { useAddressStore, useCartStore } from "@/store";
 import { currencyFormat, sleep } from "@/utils";
 import clsx from "clsx";
 import { placeOrder } from "@/actions";
+import { useRouter } from "next/navigation";
 
 export const PlaceOrder = () => {
+  const router = useRouter();
   const [loaded, setLoaded] = useState(false);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const address = useAddressStore((state) => state.address);
 
@@ -17,7 +20,7 @@ export const PlaceOrder = () => {
   const tax = useCartStore((state) => state.getTax());
   const total = useCartStore((state) => state.getTotal());
   const cart = useCartStore(state => state.cart);
-
+  const clearCart = useCartStore(state => state.clearCart);
 
   useEffect(() => {
     setLoaded(true);
@@ -36,13 +39,19 @@ export const PlaceOrder = () => {
       size: product.size,
     }));
 
-    //console.log({ address, productsToOrder })
 
-    const data = await placeOrder(productsToOrder, address);
-    console.log({ data })
+    //! Server Action
+    const resp = await placeOrder(productsToOrder, address);
+    if (!resp.ok) {
+      setIsPlacingOrder(false);
+      setErrorMessage(resp.message);
+      return;
+    }
 
-    //await sleep(2);
-    setIsPlacingOrder(false);
+    //* Todo salio bien!
+    clearCart();
+    router.replace('/orders/' + resp.order?.id);
+
   }
 
   return (
@@ -93,8 +102,7 @@ export const PlaceOrder = () => {
           </span>
         </p>
 
-        {/* <p className="text-red-500">{errorMessage}</p> */}
-
+        <p className="text-red-500">{errorMessage}</p>
 
         <button
           // href="/orders/123"
