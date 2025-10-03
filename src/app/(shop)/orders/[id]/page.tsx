@@ -1,5 +1,5 @@
 
-import { Title } from "@/components";
+import { PayPalButton, Title } from "@/components";
 import Image from "next/image";
 import clsx from "clsx";
 import { IoCardOutline } from "react-icons/io5";
@@ -140,6 +140,8 @@ export default async function OrdersByIdPage({ params }: Props) {
                   {order?.isPaid ? "Pagada" : "No pagada"}
                 </span>
               </div>
+
+               <PayPalButton />
             </div>
           </div>
         </div>

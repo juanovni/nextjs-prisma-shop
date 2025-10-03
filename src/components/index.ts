@@ -7,7 +7,8 @@ export * from './product/size-selector/SizeSelector';
 export * from './product/slideshow/ProductMobileSlideshow';
 export * from './product/slideshow/ProductSlideshow';
 
-export * from './provider/Provider';
+export * from './providers/Providers';
+export * from './paypal/PayPalButton';
 
 export * from './ui/not-found/PageNotFound';
 export * from './ui/stock-label/StockLabel';
