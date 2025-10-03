@@ -8,13 +8,13 @@ import { redirect } from "next/navigation";
 import { currencyFormat } from "@/utils";
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function OrdersByIdPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
 
   // Todo: Llamar el server action
 
@@ -125,7 +125,7 @@ export default async function OrdersByIdPage({ params }: Props) {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-              <div
+              {/*    <div
                 className={clsx(
                   "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
                   {
@@ -135,13 +135,13 @@ export default async function OrdersByIdPage({ params }: Props) {
                 )}
               >
                 <IoCardOutline size={30} />
-                {/* <span className="mx-2">Pendiente de pago</span> */}
+            
                 <span className="mx-2">
                   {order?.isPaid ? "Pagada" : "No pagada"}
                 </span>
               </div>
-
-               <PayPalButton />
+ */}
+              <PayPalButton amount={order!.total} orderId={order!.id} />
             </div>
           </div>
         </div>

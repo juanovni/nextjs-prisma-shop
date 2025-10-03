@@ -3,9 +3,31 @@
 
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 
-export const PayPalButton = () => {
+interface Props {
+  orderId: string;
+  amount: number;
+}
 
+export const PayPalButton = ({ orderId, amount }: Props) => {
   const [{ isPending }] = usePayPalScriptReducer();
+  const roundedAmount = (Math.round(amount * 100)) / 100; //123.23
+
+  const createOrder = async (_data: any, actions: any): Promise<string> => {
+
+    const transactionId = await actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            currency_code: 'USD', // 👈 recomendado
+            value: `${roundedAmount}`, // 👈 debe ser string en formato 2 decimales
+          },
+        },
+      ],
+    });
+    console.log({ transactionId });
+
+    return transactionId;
+  }
 
   if (isPending) {
     return (
@@ -17,6 +39,8 @@ export const PayPalButton = () => {
   }
 
   return (
-    <PayPalButtons />
+    <PayPalButtons
+      createOrder={createOrder}
+    />
   )
 }
