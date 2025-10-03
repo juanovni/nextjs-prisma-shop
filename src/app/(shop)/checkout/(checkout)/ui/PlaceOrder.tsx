@@ -38,7 +38,8 @@ export const PlaceOrder = () => {
 
     //console.log({ address, productsToOrder })
 
-    await placeOrder(productsToOrder, address);
+    const data = await placeOrder(productsToOrder, address);
+    console.log({ data })
 
     //await sleep(2);
     setIsPlacingOrder(false);
