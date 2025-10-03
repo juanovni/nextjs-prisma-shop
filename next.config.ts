@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compiler: {
+    styledComponents: true
+  },
   webpack: (config) => {
     // Evita que Next intente empaquetar carpetas innecesarias
     config.externals.push({ prisma: 'commonjs prisma' });
