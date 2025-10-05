@@ -3,6 +3,7 @@ export * from './products/product-grid/ProductGrid';
 export * from './products/product-grid/ProductGridItem';
 
 export * from './product/quantity-selector/QuantitySelector';
+export * from './product/product-image/ProductImage';
 export * from './product/size-selector/SizeSelector';
 export * from './product/slideshow/ProductMobileSlideshow';
 export * from './product/slideshow/ProductSlideshow';
