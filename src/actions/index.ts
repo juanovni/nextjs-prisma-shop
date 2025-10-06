@@ -7,6 +7,7 @@ export * from './auth/logout';
 export * from './auth/register';
 
 export * from './country/get-countries';
+export * from './category/get-categories';
 
 export * from './paypal/set-transaction-id';
 export * from './paypal/paypal-check-payment';
