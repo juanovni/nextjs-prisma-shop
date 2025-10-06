@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation';
 import { Pagination, ProductGrid, Title } from "@/components";
-import { Category } from "@/interfaces";
 import { getPaginatedProductsWithImages } from '@/actions/product/get-product-pagination';
 import { Gender } from '@/generated/prisma';
 
@@ -24,7 +23,7 @@ export default async function GenderByIdPage({ params, searchParams }: Props) {
     redirect(`/gender/${gender}`);
   }
 
-  const labels: Record<Category, string> = {
+  const labels: Record<string, string> = {
     'men': 'para hombres',
     'women': 'para mujeres',
     'kid': 'para ninos',
@@ -33,7 +32,7 @@ export default async function GenderByIdPage({ params, searchParams }: Props) {
   return (
     <>
       <Title
-        title={`Ropa - ${labels[gender as Category]}`}
+        title={`Artículos de ${labels[gender]}`}
         subtitle="Categorias"
         className="mb-2" />
 

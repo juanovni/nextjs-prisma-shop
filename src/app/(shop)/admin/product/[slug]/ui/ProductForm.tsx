@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { Category, Product, ProductImage as ProductWithImage } from "@/interfaces";
 import clsx from "clsx";
 import { useRouter } from 'next/navigation';
-import { ProductImage } from '@/components';
+import { ProductImage } from "@/components";
 
 interface Props {
-  product: Partial<Product>;
+  product: Partial<Product> & { ProductImage?: ProductWithImage[] };
   categories: Category[];
 }
 
@@ -51,7 +51,7 @@ export const ProductForm = ({ product, categories }: Props) => {
   watch("sizes");
 
   const onSizeChanged = (size: string) => {
-    const sizes = new Set(getValues("sizes"));
+    const sizes = new Set(getValues("sizes")); //Exluye duplicados Set
     sizes.has(size) ? sizes.delete(size) : sizes.add(size);
     setValue("sizes", Array.from(sizes));
   };
@@ -188,7 +188,7 @@ export const ProductForm = ({ product, categories }: Props) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {/* {product.ProductImage?.map((image) => (
+            {product.ProductImage?.map((image) => (
               <div key={image.id}>
                 <ProductImage
                   alt={product.title ?? ""}
@@ -205,7 +205,7 @@ export const ProductForm = ({ product, categories }: Props) => {
                   Eliminar
                 </button>
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
