@@ -4,20 +4,19 @@ export const revalidate = 0;
 import { getPaginatedOrders, getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductImage, Title } from "@/components";
 import { currencyFormat } from "@/utils";
-import Image from "next/image";
 
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { IoCardOutline } from "react-icons/io5";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
-  };
+  }>;
 }
 
 export default async function OrdersPage({ searchParams }: Props) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+  const pageTemp = (await searchParams).page;
+  const page = pageTemp ? parseInt(pageTemp) : 1;
+
 
   const { products, currentPage, totalPages } =
     await getPaginatedProductsWithImages({ page });
