@@ -16,6 +16,7 @@ export * from './product/get-product-by-slug';
 export * from './product/get-product-pagination';
 export * from './product/get-stock-by-slug';
 export * from './product/create-update-product';
+export * from './product/delete-product-image';
 
 export * from './order/place-order';
 export * from './order/get-orders-by-user';
