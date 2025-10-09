@@ -43,6 +43,7 @@ export const authConfig: NextAuthConfig = {
         if (!bcryptjs.compareSync(password, user.password)) return null;
 
         // Regresar la propiedad del usuario menos el passoword _
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { password: _, ...rest } = user;
 
         //console.log(rest)
