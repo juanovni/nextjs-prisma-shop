@@ -1,7 +1,7 @@
 export const revalidate = 0;
 
 // https://tailwindcomponents.com/component/hoverable-table
-import { getPaginatedOrders, getPaginatedProductsWithImages } from "@/actions";
+import { getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductImage, Title } from "@/components";
 import { currencyFormat } from "@/utils";
 
@@ -18,7 +18,7 @@ export default async function OrdersPage({ searchParams }: Props) {
   const page = pageTemp ? parseInt(pageTemp) : 1;
 
 
-  const { products, currentPage, totalPages } =
+  const { products, totalPages } =
     await getPaginatedProductsWithImages({ page });
 
   return (

@@ -2,7 +2,6 @@
 
 .env
 
-/postgres/
 postgres/
 
 # dependencies

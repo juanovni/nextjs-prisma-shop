@@ -11,7 +11,7 @@ export const authConfig: NextAuthConfig = {
   },
 
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
+    authorized({ auth }) {
       console.log({ auth })
       return true;
     },
@@ -20,7 +20,7 @@ export const authConfig: NextAuthConfig = {
       return token;
     },
     async session({ session, token }) {
-      session.user = token.user as any;
+      session.user = token.user as unknown as typeof session.user;
       return session;
     },
   },
